@@ -23,7 +23,6 @@ function Popsicle(element) {
 
   function startTouch (event) {
     // initialize our start variables
-    event.preventDefault()
     this.execute = true; // keep this at the beginning
     this.fingers = event.touches.length
     this.startX = this.startX || event.touches[0].pageX
