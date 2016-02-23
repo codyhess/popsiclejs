@@ -1,7 +1,7 @@
 Popsicle JS
 ===========
 
-Popsicle JS fires the following custom events:
+Popsicle JS fires the following custom touch events:
 * onefingertap
 * swipeleft
 * swiperight
