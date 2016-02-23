@@ -11,15 +11,15 @@ Popsicle JS fires the following custom events:
 * threefingertap
 * fourfingertap
 
-* Download Popsicle JS
+### Download Popsicle JS
 [Download Popsicle JS Version 1.0](https://raw.githubusercontent.com/codyhess/popsiclejs/master/popsicle.js)
 
-* Import Popsicle JS
+### Import Popsicle JS
 ```html
 <script src="/path/to/popsicle.js"></script>
 ```
 
-* Create a popsicle (raw) and bind an event.
+### Create a popsicle (raw) and bind an event.
 ```javascript
 var popsicle;
 var myElement;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ```
 
-* Create a Popsicle (jQuery)
+### Create a Popsicle (jQuery)
 ```javascript
 var popsicle;
 var $myElement;
