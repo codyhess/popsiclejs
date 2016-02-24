@@ -2,45 +2,138 @@
 <html>
   <head>
     <title>Popsicle JS</title>
+    <script src="https://raw.githubusercontent.com/codyhess/popsiclejs/master/popsicle.js">
+    </script>
     <style>
 body {
   text-align: center;
   font-size: 1.2em;
   line-height: 1.3em;
   font-family: monospace;
-  margin: auto;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+.center-column {
   width: 40em;
+  margin: auto;
+}
+.bold {
+  font-weight: bold;
 }
 ul {
-  list-style: none;
+  //list-style: none;
+  line-height: 1.4em;
 }
-p {
+p, ul {
   text-align: left;
+}
+.flexer {
+  display: flex;
+}
+.code {
+  background-color: lightgrey;
+  padding: 1em;
+  border: 1px solid black;
+}
+.indent {
+  text-indent: -1em;
+  padding-left: 1em;
+}
+.indent2 {
+  text-indent: -2em;
+  padding-left: 2em;
 }
     </style>
   </head>
   <body>
-    <h1>Popsicle JS</h1>
-    <h5>
-      <a href="https://raw.githubusercontent.com/codyhess/popsiclejs/master/popsicle.js">Download Popsicle JS</a>
-    </h5>
-    <p>Popsicle JS is a small-footprint touch event library I built as an
-    alternative to jQuery Mobile and Hammer JS. Popsicle is written in raw
-    JavaScript so it doesn't require jQuery (although it does work <em>with</em>
-    jQuery) and there are no polyfills for features implemented by all modern
-    browsers.</p>
-    <div id="events">
-      <p>Popsicle provides the following custom touch events:</p>
-      <ul>
-        <li>onefingertap</li>
-        <li>swipeup</li>
-        <li>swipedown</li>
-        <li>swipeleft</li>
-        <li>swiperight</li>
-        <li>twofingertap</li>
-        <li>threefingertap</li>
-        <li>fourfingertap</li>
-      </ul>
+    <div id="content" class="center-column">
+      <h1>Popsicle JS</h1>
+      <h5>
+        <a href="https://raw.githubusercontent.com/codyhess/popsiclejs/master/popsicle.js">Download Popsicle JS</a>
+      </h5>
+      <p>Popsicle JS is a small-footprint touch event library.
+      Popsicle is written in raw
+      JavaScript so it does not require jQuery (although it does work <em>with</em>
+      jQuery) and there are no polyfills for features implemented by all modern
+      browsers.</p>
+      <div>
+        <h3 id="eventMessage" class="bold">Touch anywhere to fire an event.</h3>
+      </div>
+      <div id="events">
+        <p>Popsicle provides the following custom touch events:</p>
+        <div class="flexer">
+          <ul>
+            <li>onefingertap</li>
+            <li>twofingertap</li>
+            <li>threefingertap</li>
+            <li>fourfingertap</li>
+          </ul>
+          <ul>
+            <li>swipeup</li>
+            <li>swipedown</li>
+            <li>swipeleft</li>
+            <li>swiperight</li>
+          </ul>
+        </div>
+      </div>
+      <div id="code">
+        <p>You'll want to include Popsicle JS.</p>
+        <p class="code">&lt;script src="/path/to/popsicle.js"&gt;&lt;script&gt;</p>
+        <p>Then in your main file, create a Popsicle object and start listening!</p>
+        <p class="code">
+          var popsicle;<br>
+          var body;<br>
+          document.addEventListener('DOMContentLoaded', function() {<br>
+            <span class="indent">popsicle = new Popsicle();</span><br>
+            <span class="indent">body = document.getElementsByTagName('body')[0];</span><br>
+            <span class="indent">body.addEventListener('swipeup', function(event) {<span><br>
+                <span class="indent2">console.log('swipeup event');</span><br>
+            <span class="indent">});</span><br>
+          });<br>
+        </p>
+        <p>By default, Popsicle binds to the <em>body</em> element, so listeners
+        may be attached to any child element. To ensure the entire screen is
+        tappable, use the following CSS.</p>
+        <p class="code">
+          body {<br>
+            <span class="indent">width: 100vw;</span><br>
+            <span class="indent">height: 100vh;</span><br>
+          }<br>
+        </p>
+      </div>
     </div>
+    <script>
+var popsicle;
+var body;
+var eventMessage;
+var handlers = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+  popsicle = new Popsicle();
+
+  body = document.getElementsByTagName('body')[0];
+  eventMessage = document.getElementById('eventMessage');
+
+  body.addEventListener('onefingertap', handlers['oneFT']);
+  body.addEventListener('twofingertap', handlers['twoFT']);
+  body.addEventListener('threefingertap', handlers['threeFT']);
+  body.addEventListener('fourfingertap', handlers['fourFT']);
+  body.addEventListener('swipeup', handlers['sU']);
+  body.addEventListener('swipedown', handlers['sD']);
+  body.addEventListener('swipeleft', handlers['sL']);
+  body.addEventListener('swiperight', handlers['sR']);
+});
+
+handlers['oneFT'] = function(event) { eventMessage.innerText = 'One Finger Tap'; }
+handlers['twoFT'] = function(event) { eventMessage.innerText = 'Two Finger Tap'; }
+handlers['threeFT'] = function(event) { eventMessage.innerText = 'Three Finger Tap'; }
+handlers['fourFT'] = function(event) { eventMessage.innerText = 'Four Finger Tap'; }
+handlers['sU'] = function(event) { eventMessage.innerText = 'Swipe Up'; }
+handlers['sD'] = function(event) { eventMessage.innerText = 'Swipe Down'; }
+handlers['sR'] = function(event) { eventMessage.innerText = 'Swipe Right'; }
+handlers['sL'] = function(event) { eventMessage.innerText = 'Swipe Left'; }
+    </script>
   </body>
 </html>
