@@ -3,13 +3,12 @@
  */
 function Popsicle(element) {
   // What are we listening on?
-  this.element = element || document
+  this.element = element || document.getElementsByTagName('body')[0];
 
   // What are we listening for?
   this.startX, this.startY, this.execute, this.fingers, this.originalFingerId
 
   // What events do we send?
-  var oneFingerTapEvent = new Event('onefingertap', {bubbles: true})
   var twoFingerTapEvent = new Event('twofingertap', {bubbles: true})
   var threeFingerTapEvent = new Event('threefingertap', {bubbles: true})
   var fourFingerTapEvent = new Event('fourfingertap', {bubbles: true})
@@ -61,8 +60,6 @@ function Popsicle(element) {
         event.target.dispatchEvent(swipeDownEvent)
       } else if (deltaY < -30) {
         event.target.dispatchEvent(swipeUpEvent)
-      } else {
-        event.target.dispatchEvent(oneFingerTapEvent)
       }
     } else if (this.fingers === 2) {
       event.target.dispatchEvent(twoFingerTapEvent)
